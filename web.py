@@ -1,13 +1,13 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from urllib.parse import parse_qsl, urlparse
+from urllib.parse import urlparse
 
 
 class WebRequestHandler(BaseHTTPRequestHandler):
-     # Diccionario que almacena el contenido HTML para cada ruta
+    # Diccionario que almacena el contenido HTML para cada ruta
     contenido = {
         '/': """<!DOCTYPE html>
                 <html lang="es">
-                <head><title>Página de Inicio</title></head>S
+                <head><title>Página de Inicio</title></head>
                 <body>
                     <h1>Bienvenido a la página de inicio</h1>
                     <p>Esta es la página principal</p>
@@ -42,11 +42,11 @@ class WebRequestHandler(BaseHTTPRequestHandler):
                                 </html>"""
     }
 
-     def do_GET(self):
+    def do_GET(self):
         # Obtener la ruta solicitada
         path = self.path
 
-     # Verificar si la ruta solicitada existe en el diccionario
+        # Verificar si la ruta solicitada existe en el diccionario
         if path in self.contenido:
             # Si la ruta existe, enviar respuesta con el contenido correspondiente
             self.send_response(200)
@@ -60,10 +60,7 @@ class WebRequestHandler(BaseHTTPRequestHandler):
             self.end_headers()
             self.wfile.write("<h1>Error 404: Página no encontrada</h1>")
 
-
-
 if __name__ == "__main__":
-    print("Starting server on port 8000")  # O el puerto que elijas
+    print("Starting server on port 8000")  # Puerto 8000
     server = HTTPServer(("localhost", 8000), WebRequestHandler)
     server.serve_forever()
-
