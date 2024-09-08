@@ -3,26 +3,63 @@ from urllib.parse import parse_qsl, urlparse
 
 
 class WebRequestHandler(BaseHTTPRequestHandler):
-    def url(self):
-        return urlparse(self.path)
+     # Diccionario que almacena el contenido HTML para cada ruta
+    contenido = {
+        '/': """<!DOCTYPE html>
+                <html lang="es">
+                <head><title>Página de Inicio</title></head>S
+                <body>
+                    <h1>Bienvenido a la página de inicio</h1>
+                    <p>Esta es la página principal</p>
+                    <a href="/proyecto/web-uno">Proyecto Web Uno</a><br>
+                    <a href="/proyecto/web-dos">Proyecto Web Dos</a><br>
+                    <a href="/proyecto/web-tres">Proyecto Web Tres</a><br>
+                </body>
+                </html>""",
+        '/proyecto/web-uno': """<!DOCTYPE html>
+                                <html lang="es">
+                                <head><title>Proyecto Web Uno</title></head>
+                                <body>
+                                    <h1>Proyecto: Web Uno</h1>
+                                    <p>Este es el contenido del proyecto Web Uno.</p>
+                                </body>
+                                </html>""",
+        '/proyecto/web-dos': """<!DOCTYPE html>
+                                <html lang="es">
+                                <head><title>Proyecto Web Dos</title></head>
+                                <body>
+                                    <h1>Proyecto: Web Dos</h1>
+                                    <p>Este es el contenido del proyecto Web Dos.</p>
+                                </body>
+                                </html>""",
+        '/proyecto/web-tres': """<!DOCTYPE html>
+                                <html lang="es">
+                                <head><title>Proyecto Web Tres</title></head>
+                                <body>
+                                    <h1>Proyecto: Web Tres</h1>
+                                    <p>Este es el contenido del proyecto Web Tres.</p>
+                                </body>
+                                </html>"""
+    }
 
-    def query_data(self):
-        return dict(parse_qsl(self.url().query))
+     def do_GET(self):
+        # Obtener la ruta solicitada
+        path = self.path
 
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-Type", "text/html")
-        self.end_headers()
-        self.wfile.write(self.get_response().encode("utf-8"))
+     # Verificar si la ruta solicitada existe en el diccionario
+        if path in self.contenido:
+            # Si la ruta existe, enviar respuesta con el contenido correspondiente
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html")
+            self.end_headers()
+            self.wfile.write(self.contenido[path].encode("utf-8"))
+        else:
+            # Si la ruta no existe, enviar un error 404
+            self.send_response(404)
+            self.send_header("Content-Type", "text/html")
+            self.end_headers()
+            self.wfile.write("<h1>Error 404: Página no encontrada</h1>")
 
-    def get_response(self):
-        return f"""
-    <h1> Hola Web </h1>
-    <p> URL Parse Result : {self.url()}         </p>
-    <p> Path Original: {self.path}         </p>
-    <p> Headers: {self.headers}      </p>
-    <p> Query: {self.query_data()}   </p>
-"""
 
 
 if __name__ == "__main__":
