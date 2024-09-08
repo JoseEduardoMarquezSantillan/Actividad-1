@@ -7,10 +7,10 @@ class WebRequestHandler(BaseHTTPRequestHandler):
     contenido = {
         '/': """<!DOCTYPE html>
                 <html lang="es">
-                <head><title>Página de Inicio</title></head>
+                <head><title>Pagina de Inicio</title></head>
                 <body>
                     <h1>Bienvenido a la página de inicio</h1>
-                    <p>Esta es la página principal</p>
+                    <p>Esta es la pagina principal, seleccione una de los siguientes links</p>
                     <a href="/proyecto/web-uno">Proyecto Web Uno</a><br>
                     <a href="/proyecto/web-dos">Proyecto Web Dos</a><br>
                     <a href="/proyecto/web-tres">Proyecto Web Tres</a><br>
@@ -18,25 +18,25 @@ class WebRequestHandler(BaseHTTPRequestHandler):
                 </html>""",
         '/proyecto/web-uno': """<!DOCTYPE html>
                                 <html lang="es">
-                                <head><title>Proyecto Web Uno</title></head>
+                                <head><title>Proyecto Web Uno :3</title></head>
                                 <body>
-                                    <h1>Proyecto: Web Uno</h1>
+                                    <h1>Proyecto: Web Uno :33</h1>
                                     <p>Este es el contenido del proyecto Web Uno.</p>
                                 </body>
                                 </html>""",
         '/proyecto/web-dos': """<!DOCTYPE html>
                                 <html lang="es">
-                                <head><title>Proyecto Web Dos</title></head>
+                                <head><title>Proyecto Web Dos :D</title></head>
                                 <body>
-                                    <h1>Proyecto: Web Dos</h1>
+                                    <h1>Proyecto: Web Dos :DD</h1>
                                     <p>Este es el contenido del proyecto Web Dos.</p>
                                 </body>
                                 </html>""",
         '/proyecto/web-tres': """<!DOCTYPE html>
                                 <html lang="es">
-                                <head><title>Proyecto Web Tres</title></head>
+                                <head><title>Proyecto Web Tres :0</title></head>
                                 <body>
-                                    <h1>Proyecto: Web Tres</h1>
+                                    <h1>Proyecto: Web Tres:00</h1>
                                     <p>Este es el contenido del proyecto Web Tres.</p>
                                 </body>
                                 </html>"""
