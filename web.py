@@ -9,7 +9,7 @@ class WebRequestHandler(BaseHTTPRequestHandler):
                 <html lang="es">
                 <head><title>Pagina de Inicio</title></head>
                 <body>
-                    <h1>Bienvenido a la página de inicio</h1>
+                    <h1>Bienvenido a la pagina de inicio</h1>
                     <p>Esta es la pagina principal, seleccione una de los siguientes links</p>
                     <a href="/proyecto/web-uno">Proyecto Web Uno</a><br>
                     <a href="/proyecto/web-dos">Proyecto Web Dos</a><br>
@@ -62,5 +62,5 @@ class WebRequestHandler(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     print("Starting server on port 8000")  # Puerto 8000
-    server = HTTPServer(("localhost", 8000), WebRequestHandler)
+    server = HTTPServer(("0.0.0.0", 8000), WebRequestHandler)
     server.serve_forever()
